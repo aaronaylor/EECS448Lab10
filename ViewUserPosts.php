@@ -18,7 +18,7 @@ if ($result = $mysqli->query($query))
 	echo ("<tr><th>post_id</th><th>content</th></tr>");
 	while($row = $result->fetch_assoc())
 	{
-		echo ("<tr><th>" . $row["post_id"] . "</th><th>" . $row["content"] . "</th></tr>");
+		echo ("<tr><td>" . $row["post_id"] . "</td><td>" . $row["content"] . "</td></tr>");
 	}
 	echo ("</table>");
 	$result->free();

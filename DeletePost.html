@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>EECS 448 Lab 10 Ex. 7</title>
+</head>
+<body>
+    <h2>Delete Posts</h2>
+    <form action="DeletePost.php" method="POST">
+        <table>
+            <tr>
+                <th>Post Content</th>
+                <th>Post Author</th>
+                <th>Delete?</th>
+            </tr>
+            <?php
+            $mysqli = new mysqli("mysql.eecs.ku.edu", "aaronaylor", "Fredonia1!", "aaronaylor");
+            if($mysqli->connect_errno) {
+            echo "
+            <tr><td> SQL ERROR</td><td>ERROR</td><td>ERROR</td></tr>";
+            } else {
+            $result = $mysqli->query("SELECT * FROM Posts");
+            while($row = $result->fetch_assoc()) {
+            echo ("
+            <tr><td>" . $row["content"] . "</td><td>" . $row["author_id"] . "</td><td><input type=\"checkbox\" name=\"Checks[]\" value=\"" . $row["post_id"] . "\" /></td></tr>");
+            }
+
+            $result->free();
+            }
+            $mysqli->close();
+            ?>
+        </table>
+        <input type="submit" value="Submit"/>
+    </form>
+    
+</body>
+</html>

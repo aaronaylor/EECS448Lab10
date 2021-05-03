@@ -17,7 +17,7 @@ if ($result = $mysqli->query($query))
 	echo ("<tr><th>user_id</th></tr>");
 	while($row = $result->fetch_assoc())
 	{
-		echo ("<tr><th>" . $row["user_id"] . "</th></tr>");
+		echo ("<tr><td>" . $row["user_id"] . "</td></tr>");
 	}
 	echo ("</table>");
 	$result->free();
