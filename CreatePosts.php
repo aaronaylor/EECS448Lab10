@@ -13,13 +13,14 @@ $query = "INSERT INTO Posts (content, author_id) VALUES('$textData','$UserId')";
 $query2 = "SELECT user_id FROM User WHERE user_id = '$UserId'";
 if ($textData != "" && $result = $mysqli->query($query2))
 {
-		if($result["user_id"] == $UserID && $mysqli->query($query))
+	$row = $result->fetch_assoc();
+		if($row["user_id"] == $UserId && $mysqli->query($query))
 		{
 		echo("<p>Created post by User ID: $UserId</p><br><p>Post Text: $textData</p>");
 		}
 		else
 		{
-			echo("<p>Error in creating Post... User ID does not exist</p>")
+			echo("<p>Error in creating Post... User ID does not exist</p>");
 		}
 	
 	$result->free();
