@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>EECS 448 Lab 10 Ex. 6</title>
+</head>
+<body>
+    <form action="ViewUserPosts.php" method="POST">
+        <label for="UserSelect">Select User: </label>
+        <select name="UserSelect" id="UserSelect">
+            <?php
+            $mysqli = new mysqli("mysql.eecs.ku.edu", "aaronaylor", "Fredonia1!", "aaronaylor");
+            if($mysqli->connect_errno) {
+            echo "
+            <option value=\"ERROR\">SQL ERROR</option>";
+            } else {
+            $result = $mysqli->query("SELECT user_id FROM User");
+            while($row = $result->fetch_assoc()) {
+            echo ("<option value=\"" . $row['user_id'] . "\">" . $row['user_id'] . "</option>");
+            }
+            $result->free();
+            }
+            $mysqli->close();
+            ?>
+        </select><br />
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
+</html>
